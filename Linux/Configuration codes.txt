@@ -1,0 +1,161 @@
+Dæmi 3
+Sudo systemctl status isc-dhcp-server 
+
+Dæmi 4:
+dig -x 127.0.0.1
+sudo named-checkzone krist.lan /etc/bind/for.krist.lan
+sudo named-checkzone krist.lan /etc/bind/rev.krist.lan
+
+Dæmi 5: 
+
+sudo useradd AleRag
+sudo passwd AleRag
+
+sudo useradd AndHau
+sudo passwd AndHau
+
+sudo useradd GudSte
+sudo passwd GudSte
+
+sudo useradd HalJon
+sudo passwd HalJon
+
+sudo useradd HarHja
+sudo passwd HarHja
+
+sudo useradd HraAra
+sudo passwd HraAra
+
+sudo useradd IngGud
+sudo passwd IngGud
+
+sudo useradd IsaLei
+sudo passwd IsaLei
+
+sudo useradd JohKri
+sudo passwd JohKri
+
+sudo useradd KriSva
+sudo passwd KriSva
+
+sudo useradd LarGun
+sudo passwd JohHaf
+
+sudo useradd LinMag
+sudo passwd LinMag
+
+sudo useradd RudBjo
+sudo passwd RudBjo
+
+sudo useradd SigSte
+sudo passwd SigSte
+
+sudo useradd SigJen
+Sudo passwd SigJen
+
+Sudo groupadd IT
+sudo groupadd Management
+sudo groupadd Accounting
+sudo groupadd Manufacturing
+sudo usermod -a -G IT AleRag
+sudo usermod -a -G IT AndHau
+sudo usermod -a -G Management GudSte
+sudo usermod -a -G Management HalJon
+sudo usermod -a -G Management HarHja
+sudo usermod -a -G Accounting HraAra
+sudo usermod -a -G Accounting IngGud
+sudo usermod -a -G Manufacturing IsaLei
+sudo usermod -a -G Manufacturing JohKri
+sudo usermod -a -G Manufacturing JohHaf
+sudo usermod -a -G Manufacturing KriSva
+sudo usermod -a -G Manufacturing LarGun
+sudo usermod -a -G Manufacturing LinMag
+sudo usermod -a -G Manufacturing RudBjo
+sudo usermod -a -G Manufacturing SigSte
+sudo usermod -a -G Manufacturing SigJen
+sudo usermod -a -G IT AndHau
+sudo usermod -a -G IT AndHau
+sudo usermod -a -G IT AndHau
+
+
+
+Dæmi 6:
+sudo apt update
+sudo apt install samba
+mkdir /home/krist/sambashare/
+
+sudo nano /etc/samba/smb.conf
+[sambashare]
+ comment = samba on Ubuntu
+ path = /home/krist/sambashare
+ read only = no
+ browsable = yes
+
+sudo service smbd restart
+
+sudo smbpasswd -a AleRag
+sudo smbpasswd -a AndHau
+sudo smbpasswd -a GudSte
+sudo smbpasswd -a HalJon
+sudo smbpasswd -a HarHja
+
+Dæmi 7: 
+
+Sudo apt -get upgrade
+Sudo apt-get install openssh-server
+
+Sudo vi /etc/ssh/sshd_config
+
+AllowUsers AleRag AndHau GudSte HalJon HarHja
+
+Dæmi 8: 
+
+Sudo apt-get update
+Sudo apt-get install apache2
+
+Sudo a2enmod ssl
+
+sudo service apache2 restart
+
+Sudo mkdir /etc/apache2/ssl
+
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout
+/etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+
+Country Name (2 letter code) [IS]:IS
+Locality Name (eg, city) []:Reykjavík
+Common Name(e.g. server FQDN or YOUR name) []:Krist.com
+Email Address []:kiddiflame@gmail.com
+
+sudo nano /etc/apache2/sites-available/default-ssl.conf
+
+ServerAdmin krist@local.com
+ServerName krist.com
+ServerAlias www.krist.com
+DocumentRoot /var/www/html
+SSLCertificateFile /etc/apache2/ssl/apache.crt
+SSLCertificateKeyFile /etc/apache2/ssl/apache.key
+
+sudo a2ensite default-ssl.conf
+sudo service apache2 restart
+
+Dæmi 10:
+
+sudo vi /etc/mailman/mm_cfg.py
+sudo postconf -e 'relay_domains = lists.example.com'
+sudo postconf -e 'mailman_destination_recipient_limit = 1'
+sudo vi /etc/postfix/transport
+sudo postmap -v /etc/postfix/transport
+  postmap: name_mask: all
+  postmap: inet_addr_local: configured 2 IPv4 addresses
+  postmap: inet_addr_local: configured 2 IPv6 addresses
+  postmap: open hash /etc/postfix/transport
+  postmap: compiled against Berkely DB: 5.3.28?
+  postmap: Run-time linked against Berkeley DB: 5.3.28?
+sudo /etc/init.d/postfix restart
+sudo newlist --urlhost=lists.example.com --emailhost=lists.example.com mailman
+vi /etc/aliases
+sudo vi/etc/aliases
+sudo newaliases
+sudo /etc/init.d/postfix restart
+/etc/init.d/mailman start

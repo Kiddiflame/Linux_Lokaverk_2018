@@ -1,0 +1,9 @@
+16.4.2018: Configuraði private interface og stillti ip tölur
+18.4.2018: Vann og kláraði lið 2
+21.4.2018: Installaði DHCP og byrjaði á DNS
+23.4.2018: Kláraði DNS
+25.4.2018: Stillti upp hópanna og byrjaði á Samba
+27.4.2018: Kláraði Samba
+30.4.2018: Stillti upp SSH permission fyrir ákveðna notenda og byrjaði á Apache 2
+4.5.2018: Kláraði Apache2 og byrjaði á að vinna postfix
+9.5.2018: Kláraði loks postfix vinnuna
